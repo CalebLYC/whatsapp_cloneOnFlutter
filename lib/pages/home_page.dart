@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/pages/discussion_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -104,57 +105,65 @@ class _HomePageState extends State<HomePage> {
         final message = discussion['lastMessage'];
 
         return Card(
-            child: ListTile(
-          leading: Container(
-            width: 80,
-            height: 80,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              "assets/images/$img",
-              width: 80,
-              fit: BoxFit.cover,
-            ),
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('$title'),
-              Text(
-                '$time',
-                style: const TextStyle(
-                  fontSize: 10,
-                  color: Colors.green,
+          child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DiscussionPage()));
+              },
+              child: ListTile(
+                leading: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset(
+                    "assets/images/$img",
+                    width: 80,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              author != "" ? Text("$author: $message") : Text("$message"),
-              notRead != 0
-                  ? Container(
-                      width: 20,
-                      height: 20,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('$title'),
+                    Text(
+                      '$time',
+                      style: const TextStyle(
+                        fontSize: 10,
                         color: Colors.green,
-                        //borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Center(
-                        child: Text(
-                          '$notRead',
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 15),
-                        ),
-                      ))
-                  : const Text(""),
-            ],
-          ),
-        ));
+                    ),
+                  ],
+                ),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    author != "" ? Text("$author: $message") : Text("$message"),
+                    notRead != 0
+                        ? Container(
+                            width: 20,
+                            height: 20,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green,
+                              //borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '$notRead',
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                            ))
+                        : const Text(""),
+                  ],
+                ),
+              )),
+        );
       },
     );
   }

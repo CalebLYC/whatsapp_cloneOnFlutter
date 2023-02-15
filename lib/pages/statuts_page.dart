@@ -51,8 +51,9 @@ class _StatutsPageState extends State<StatutsPage> {
         ),
         const Padding(padding: EdgeInsets.only(bottom: 5)),
         Container(
-          height: 300,
+          //height: 300,
           child: ListView.builder(
+            shrinkWrap: true,
             itemCount: statuts.length,
             itemBuilder: (context, index) {
               final statut = statuts[index];
@@ -89,8 +90,9 @@ class _StatutsPageState extends State<StatutsPage> {
         ),
         const Padding(padding: EdgeInsets.only(bottom: 25)),
         Container(
-          height: 130,
+          //height: 130,
           child: ListView.builder(
+            shrinkWrap: true,
             itemCount: seenStatuts.length,
             itemBuilder: (context, index) {
               final statut = seenStatuts[index];

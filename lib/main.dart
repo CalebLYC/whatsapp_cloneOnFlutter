@@ -1,6 +1,6 @@
 //import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/my_widget.dart';
+import 'package:whatsapp_clone/pages/my_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

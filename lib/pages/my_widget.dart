@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/pages/calls_page.dart';
+import 'package:whatsapp_clone/pages/components/my_floating_buttons.dart';
 import 'package:whatsapp_clone/pages/groups_page.dart';
 import 'package:whatsapp_clone/pages/home_page.dart';
+import 'package:whatsapp_clone/pages/parameters_page.dart';
 import 'package:whatsapp_clone/pages/statuts_page.dart';
 
 class MyWidget extends StatefulWidget {
@@ -26,6 +28,7 @@ class _MyWidgetState extends State<MyWidget> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const SizedBox(height: 20),
             Row(
               children: [
                 const CircleAvatar(
@@ -68,11 +71,21 @@ class _MyWidgetState extends State<MyWidget> {
                 const SizedBox(width: 10),
                 IconButton(
                   icon: const Icon(Icons.more_vert),
-                  onPressed: () {},
+                  onPressed: () {
+                    //setCurrentIndex(4);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ParametersPage()),
+                    );
+                  },
                 ),
               ],
             ),
             BottomNavigationBar(
+              backgroundColor: Colors.green,
+              type: BottomNavigationBarType.fixed,
+              elevation: 0,
               currentIndex: _currentIndex,
               items: const [
                 BottomNavigationBarItem(
@@ -85,7 +98,7 @@ class _MyWidgetState extends State<MyWidget> {
                 ),
                 BottomNavigationBarItem(
                   icon: Text("Statuts"),
-                  label: "Statuts",
+                  label: "",
                 ),
                 BottomNavigationBarItem(
                   icon: Text("Appels"),
@@ -119,13 +132,14 @@ class _MyWidgetState extends State<MyWidget> {
         const HomePage(),
         const StatutsPage(),
         const CallsPage(),
+        //const ParametersPage(),
       ][_currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setCurrentIndex(1);
-        },
-        child: const Icon(Icons.message),
-      ),
+      floatingActionButton: [
+        const GroupsFloatingButton(),
+        const HomeFloatingButton(),
+        const StatutsFloatingButton(),
+        const CallsFloatingButton(),
+      ][_currentIndex],
     );
   }
 }
